@@ -2,7 +2,7 @@ name: CI workflow
 
 on: 
   push:
-  pullrequest:
+  pull_request:
     branches: ["main"]
 
 jobs: 
