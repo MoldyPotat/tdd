@@ -38,8 +38,16 @@ class CounterTest(TestCase):
 
     def test_read_a_counter(self):
         """It should read a counter"""
-        readCounter = self.client.get('/counters/foo')
+        counter = self.client.post('/counters/foo')
+        readCounter = self.client.get('counters/foo')
         self.assertEqual(readCounter.status_code, status.HTTP_200_OK)
         self.assertEqual(b'{"foo":0}\n', readCounter.data)
+
+    def test_delete_a_counter(self):
+        """It should delete a counter"""
+        deleteCounter = self.client.post('/counters/foo')
+        #self.assertEqual(deleteCounter.status_code, status.HTTP_200_OK)
+        deleteCounter = self.client.delete('/counters/foo')
+        self.assertEqual(deleteCounter.status_code, status.HTTP_204_NO_CONTENT)
 
 
